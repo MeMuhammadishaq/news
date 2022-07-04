@@ -8,6 +8,7 @@
   $pg = 1;
  }
   $set = ($pg - 1)* $limit;
+  //error
   $sql = "SELECT * FROM user ORDER BY user_id DESC LIMIT.$set.','.$limit";
   $res = $conn->query($sql);
   if($res->num_rows >0){
