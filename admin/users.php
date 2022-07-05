@@ -3,11 +3,11 @@
  include "config.php";
  $limit = 3;
  if(isset($_GET['page'])){
- $pg = $_GET['page'];
+ $page = $_GET['page'];
  }else{
-  $pg = 1;
+  $page = 1;
  }
-  $set = ($pg - 1)* $limit;
+  $offset = ($page - 1) * $limit;
   //error
   $sql = "SELECT * FROM user ORDER BY user_id DESC LIMIT.$set.','.$limit";
   $res = $conn->query($sql);
@@ -51,9 +51,11 @@
             $total_record = $result1->num_rows;
             $total_page = ceil($total_record/$limit);
             echo"<ul>";
+           
             for($i=1; $i<=$total_page; $i++){
               echo"<li style='float:left; list-style-type:none;'><a href='users.php?page=.$i.'style='text-decoration: none;'>.$i.</a></li> ";
             }   
+            
             echo "</ul>";
          
         
@@ -61,6 +63,7 @@
         
         
         ?>
+        
         
         
         
